@@ -5,49 +5,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-        header { text-align: center; padding: 50px 0; }
-        h1 { margin-bottom: 10px; }
-        .contact-info { color: #666; }
-        section { margin-bottom: 40px; }
-        .project { border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
-        footer { text-align: center; font-size: 0.8em; color: #888; margin-top: 50px; }
-        a { color: #007bff; text-decoration: none; }
+        /* --- General Styling --- */
+        html {
+            scroll-behavior: smooth; /* This makes the scrolling neat and smooth */
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* --- Navigation Bar --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            color: #007bff;
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            border-bottom: 1px solid #eee;
+        }
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            color: #222;
+        }
+        h3 {
+            margin-bottom: 5px;
+            color: #007bff;
+        }
+
+        /* --- Home/Intro Section --- */
+        #home {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #f9f9f9;
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* --- Resume Section --- */
+        .resume-container {
+            text-align: center;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .btn-download {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .btn-download:hover {
+            background-color: #0056b3;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>[Your Name]</h1>
-        <p class="contact-info">Data Analyst | [Your City] | <a href="mailto:your@email.com">Email Me</a></p>
-        <p>
-            <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
-        </p>
-    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-    <section>
-        <h2>About Me</h2>
-        <p>Welcome! I am a passionate professional skilled in [Skill 1], [Skill 2], and [Skill 3]. I love turning complex problems into simple solutions.</p>
+    <section id="home">
+        <h1>[Your Name]</h1>
+        <p>Data Analyst | Problem Solver | Tech Enthusiast</p>
+        
+        <div class="social-links">
+            <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+            <a href="https://medium.com/@yourusername" target="_blank">Medium</a>
+            <a href="https://hackerrank.com/yourusername" target="_blank">HackerRank</a>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <h3>My Resume</h3>
+            <div class="resume-container">
+                <iframe src="resume.pdf" title="Resume Preview"></iframe>
+                <br>
+                <a href="resume.pdf" download class="btn-download">Download Resume</a>
+            </div>
+        </div>
     </section>
 
-    <section>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Write a brief paragraph about yourself here. Explain your background and what drives you.</p>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        
+        <div>
+            <h3>Job Title</h3>
+            <p><strong>Company Name</strong> | Date - Date</p>
+            <ul>
+                <li>Achievement or responsibility 1</li>
+                <li>Achievement or responsibility 2</li>
+            </ul>
+        </div>
+        <br>
+        <div>
+            <h3>Previous Job Title</h3>
+            <p><strong>Company Name</strong> | Date - Date</p>
+            <ul>
+                <li>Achievement or responsibility 1</li>
+                <li>Achievement or responsibility 2</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
         <h2>Projects</h2>
         
-        <div class="project">
-            <h3>Project Title 1</h3>
-            <p>Description of what you did, the tools you used, and the result.</p>
-            <a href="#">View Code / Demo</a>
+        <div>
+            <h3>Project Title</h3>
+            <p>Brief description of the project.</p>
+            <a href="#">Link to Project</a>
         </div>
+    </section>
 
-        <div class="project">
-            <h3>Project Title 2</h3>
-            <p>Description of another cool project you worked on.</p>
-            <a href="#">View Code / Demo</a>
+    <section id="publications">
+        <h2>Publications</h2>
+        <ul>
+            <li><strong>Paper Title</strong> - Published in [Journal/Conference], Year.</li>
+        </ul>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>Certification Name - Issuing Organization (Year)</li>
+            <li>Certification Name - Issuing Organization (Year)</li>
+        </ul>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <p><strong>Languages:</strong> Python, SQL, R</p>
+        <p><strong>Tools:</strong> Tableau, PowerBI, Excel</p>
+        <p><strong>Other:</strong> Machine Learning, Data Warehousing</p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div>
+            <h3>Degree Name</h3>
+            <p><strong>University Name</strong> | Year</p>
         </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p style="text-align: center;">
+            Feel free to reach out via email or LinkedIn.<br><br>
+            <a href="mailto:your@email.com" style="color:#007bff; font-weight: bold; font-size: 1.2em;">your@email.com</a>
+        </p>
     </section>
 
     <footer>
-        <p>&copy; 2025 [Your Name]. Hosted on GitHub Pages.</p>
+        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
     </footer>
 
 </body>

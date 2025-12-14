@@ -6,106 +6,72 @@
     <title>My Portfolio</title>
     <style>
         /* --- General Styling --- */
-        html {
-            scroll-behavior: smooth; /* This makes the scrolling neat and smooth */
-        }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            line-height: 1.6;
+            margin: 0; padding: 0;
+            color: #333; line-height: 1.6;
         }
         
         /* --- Navigation Bar --- */
         nav {
-            position: sticky;
-            top: 0;
-            background-color: #fff;
-            padding: 15px 0;
+            position: sticky; top: 0;
+            background-color: #fff; padding: 15px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-            text-align: center;
+            z-index: 1000; text-align: center;
         }
         nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #555;
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-transform: uppercase;
+            margin: 0 10px; text-decoration: none; color: #555;
+            font-weight: bold; font-size: 0.9rem; text-transform: uppercase;
         }
-        nav a:hover {
-            color: #007bff;
-        }
+        nav a:hover { color: #007bff; }
 
         /* --- Section Styling --- */
         section {
-            padding: 60px 20px;
-            max-width: 900px;
-            margin: 0 auto;
+            padding: 60px 20px; max-width: 900px; margin: 0 auto;
             border-bottom: 1px solid #eee;
         }
-        h2 {
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-            color: #222;
-        }
-        h3 {
-            margin-bottom: 5px;
-            color: #007bff;
-        }
+        h2 { text-align: center; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; color: #222; }
+        h3 { margin-bottom: 5px; color: #007bff; }
 
         /* --- Home/Intro Section --- */
-        #home {
-            text-align: center;
-            padding: 100px 20px;
-            background-color: #f9f9f9;
-        }
-        .social-links {
-            margin-top: 20px;
-        }
+        #home { text-align: center; padding: 80px 20px; background-color: #f9f9f9; }
+        .social-links { margin-top: 20px; margin-bottom: 30px;}
         .social-links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-            font-size: 1.1em;
+            margin: 0 10px; text-decoration: none; color: #007bff;
+            font-weight: bold; font-size: 1.1em;
         }
 
-        /* --- Resume Section --- */
-        .resume-container {
-            text-align: center;
+        /* --- Resume Buttons & Viewer --- */
+        .btn {
+            display: inline-block; padding: 10px 20px; margin: 5px;
+            text-decoration: none; border-radius: 5px; font-weight: bold; cursor: pointer;
         }
-        iframe {
+        .btn-preview { background-color: #333; color: white; border: none; }
+        .btn-download { background-color: #007bff; color: white; border: none; }
+        
+        #resume-viewer {
+            display: none; /* Hidden by default */
+            margin-top: 20px;
             width: 100%;
             height: 500px;
             border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-        .btn-download {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .btn-download:hover {
-            background-color: #0056b3;
         }
 
         /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: #fff;
-            font-size: 0.8rem;
-        }
+        footer { text-align: center; padding: 20px; background-color: #333; color: #fff; font-size: 0.8rem; }
     </style>
+    
+    <script>
+        function toggleResume() {
+            var x = document.getElementById("resume-viewer");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -132,46 +98,33 @@
             <a href="https://hackerrank.com/yourusername" target="_blank">HackerRank</a>
         </div>
         
-        <div style="margin-top: 40px;">
-            <h3>My Resume</h3>
-            <div class="resume-container">
-                <iframe src="resume.pdf" title="Resume Preview"></iframe>
-                <br>
-                <a href="resume.pdf" download class="btn-download">Download Resume</a>
-            </div>
+        <div>
+            <button onclick="toggleResume()" class="btn btn-preview">Preview Resume</button>
+            <a href="resume.pdf" download class="btn btn-download">Download Resume</a>
         </div>
+
+        <iframe id="resume-viewer" src="resume.pdf" title="Resume Preview"></iframe>
     </section>
 
     <section id="about">
         <h2>About Me</h2>
-        <p>Write a brief paragraph about yourself here. Explain your background and what drives you.</p>
+        <p>Write a brief paragraph about yourself here.</p>
     </section>
 
     <section id="experience">
         <h2>Experience</h2>
-        
         <div>
             <h3>Job Title</h3>
             <p><strong>Company Name</strong> | Date - Date</p>
             <ul>
-                <li>Achievement or responsibility 1</li>
-                <li>Achievement or responsibility 2</li>
-            </ul>
-        </div>
-        <br>
-        <div>
-            <h3>Previous Job Title</h3>
-            <p><strong>Company Name</strong> | Date - Date</p>
-            <ul>
-                <li>Achievement or responsibility 1</li>
-                <li>Achievement or responsibility 2</li>
+                <li>Achievement 1</li>
+                <li>Achievement 2</li>
             </ul>
         </div>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
-        
         <div>
             <h3>Project Title</h3>
             <p>Brief description of the project.</p>
@@ -181,24 +134,17 @@
 
     <section id="publications">
         <h2>Publications</h2>
-        <ul>
-            <li><strong>Paper Title</strong> - Published in [Journal/Conference], Year.</li>
-        </ul>
+        <ul><li><strong>Paper Title</strong> - Published in [Journal], Year.</li></ul>
     </section>
 
     <section id="certifications">
         <h2>Certifications</h2>
-        <ul>
-            <li>Certification Name - Issuing Organization (Year)</li>
-            <li>Certification Name - Issuing Organization (Year)</li>
-        </ul>
+        <ul><li>Certification Name - Organization (Year)</li></ul>
     </section>
 
     <section id="skills">
         <h2>Skills</h2>
-        <p><strong>Languages:</strong> Python, SQL, R</p>
-        <p><strong>Tools:</strong> Tableau, PowerBI, Excel</p>
-        <p><strong>Other:</strong> Machine Learning, Data Warehousing</p>
+        <p><strong>Languages:</strong> Python, SQL</p>
     </section>
 
     <section id="education">
@@ -212,7 +158,6 @@
     <section id="contact">
         <h2>Contact Me</h2>
         <p style="text-align: center;">
-            Feel free to reach out via email or LinkedIn.<br><br>
             <a href="mailto:your@email.com" style="color:#007bff; font-weight: bold; font-size: 1.2em;">your@email.com</a>
         </p>
     </section>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Maithili Saran Reddy Lingala - Portfolio</title>
     <style>
         /* --- General Styling --- */
         html { scroll-behavior: smooth; }
@@ -11,6 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0; padding: 0;
             color: #333; line-height: 1.6;
+            background-color: #fafafa;
         }
         
         /* --- Navigation Bar --- */
@@ -23,6 +24,7 @@
         nav a {
             margin: 0 10px; text-decoration: none; color: #555;
             font-weight: bold; font-size: 0.9rem; text-transform: uppercase;
+            transition: color 0.3s;
         }
         nav a:hover { color: #007bff; }
 
@@ -30,45 +32,79 @@
         section {
             padding: 60px 20px; max-width: 900px; margin: 0 auto;
             border-bottom: 1px solid #eee;
+            background-color: #fff;
         }
-        h2 { text-align: center; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; color: #222; }
-        h3 { margin-bottom: 5px; color: #007bff; }
+        section:last-of-type { border-bottom: none; }
+        
+        h2 { text-align: center; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; color: #222; }
+        h3 { margin-bottom: 5px; color: #007bff; margin-top: 0;}
+        h4 { margin: 5px 0; color: #555; font-weight: 600; }
+        
+        p, li { font-size: 1rem; color: #444; }
+        ul { margin-top: 10px; padding-left: 20px; }
+        li { margin-bottom: 8px; }
 
         /* --- Home/Intro Section --- */
-        #home { text-align: center; padding: 80px 20px; background-color: #f9f9f9; }
+        #home { text-align: center; padding: 80px 20px; background-color: #f4f6f8; }
+        h1 { margin-bottom: 10px; font-size: 2.5rem; color: #222; }
+        .tagline { font-size: 1.2rem; color: #666; margin-bottom: 20px; }
+        
         .social-links { margin-top: 20px; margin-bottom: 30px;}
         .social-links a {
             margin: 0 10px; text-decoration: none; color: #007bff;
             font-weight: bold; font-size: 1.1em;
         }
+        .social-links a:hover { text-decoration: underline; }
 
         /* --- Resume Buttons & Viewer --- */
         .btn {
-            display: inline-block; padding: 10px 20px; margin: 5px;
+            display: inline-block; padding: 10px 25px; margin: 5px;
             text-decoration: none; border-radius: 5px; font-weight: bold; cursor: pointer;
+            transition: background 0.3s;
         }
         .btn-preview { background-color: #333; color: white; border: none; }
+        .btn-preview:hover { background-color: #555; }
+        
         .btn-download { background-color: #007bff; color: white; border: none; }
+        .btn-download:hover { background-color: #0056b3; }
         
         #resume-viewer {
             display: none; /* Hidden by default */
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
-            height: 500px;
+            height: 600px;
             border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
+        /* --- Entry Blocks (Jobs/Projects) --- */
+        .entry-block { margin-bottom: 30px; }
+        .date-location { float: right; font-size: 0.9em; color: #777; font-style: italic; }
+        .clear-float { clear: both; }
+
+        /* --- Skills Grid --- */
+        .skills-container { display: flex; flex-wrap: wrap; justify-content: space-between; }
+        .skill-category { flex-basis: 30%; min-width: 250px; margin-bottom: 20px; }
+
         /* --- Footer --- */
-        footer { text-align: center; padding: 20px; background-color: #333; color: #fff; font-size: 0.8rem; }
+        footer { text-align: center; padding: 30px; background-color: #333; color: #fff; font-size: 0.9rem; margin-top: 0; }
+        
+        /* Mobile adjustment */
+        @media (max-width: 600px) {
+            .date-location { float: none; display: block; margin-bottom: 5px; }
+        }
     </style>
     
     <script>
         function toggleResume() {
             var x = document.getElementById("resume-viewer");
+            var btn = document.getElementById("toggle-btn");
             if (x.style.display === "none") {
                 x.style.display = "block";
+                btn.innerText = "Hide Resume";
             } else {
                 x.style.display = "none";
+                btn.innerText = "Preview Resume";
             }
         }
     </script>
@@ -80,26 +116,25 @@
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
-        <a href="#publications">Publications</a>
-        <a href="#certifications">Certifications</a>
         <a href="#skills">Skills</a>
         <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
         <a href="#contact">Contact</a>
     </nav>
 
     <section id="home">
-        <h1>[Your Name]</h1>
-        <p>Data Analyst | Problem Solver | Tech Enthusiast</p>
+        <h1>Maithili Saran Reddy Lingala</h1>
+        <p class="tagline">Data Analyst | Machine Learning Enthusiast | Business Intelligence</p>
         
         <div class="social-links">
-            <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-            <a href="https://medium.com/@yourusername" target="_blank">Medium</a>
-            <a href="https://hackerrank.com/yourusername" target="_blank">HackerRank</a>
+            <a href="https://linkedin.com/in/maithililingala" target="_blank">LinkedIn</a>
+            <a href="https://github.com/maithililingala" target="_blank">GitHub</a>
+            <a href="https://medium.com/@thedatachronicles" target="_blank">Medium</a>
+            <a href="mailto:maithililingala@gmail.com">Email</a>
         </div>
         
         <div>
-            <button onclick="toggleResume()" class="btn btn-preview">Preview Resume</button>
+            <button id="toggle-btn" onclick="toggleResume()" class="btn btn-preview">Preview Resume</button>
             <a href="resume.pdf" download class="btn btn-download">Download Resume</a>
         </div>
 
@@ -108,62 +143,135 @@
 
     <section id="about">
         <h2>About Me</h2>
-        <p>Write a brief paragraph about yourself here.</p>
+        <p>
+            I am a Master of Science in Information Management student at the University of Illinois Urbana-Champaign with a 4.0 GPA. 
+            With a strong foundation in Computer Science and Big Data Analytics, I specialize in bridging the gap between mathematical theory and automated business solutions.
+            My expertise spans Machine Learning, Data Warehousing, and Business Intelligence. I am passionate about using data to drive strategic decision-making and improve operational efficiency.
+        </p>
     </section>
 
     <section id="experience">
         <h2>Experience</h2>
-        <div>
-            <h3>Job Title</h3>
-            <p><strong>Company Name</strong> | Date - Date</p>
+        
+        <div class="entry-block">
+            <span class="date-location">Aug 2024 - Present | Champaign, Illinois</span>
+            <h3>Research Assistant</h3>
+            <h4>Gies College of Business, University of Illinois - Urbana Champaign</h4>
             <ul>
-                <li>Achievement 1</li>
-                <li>Achievement 2</li>
+                <li>Re-engineered a traditional analytical process by developing a new, end-to-end machine learning framework, utilizing real-world datasets to validate models that translated mathematical theory into automated business solutions.</li>
+                <li>Authored accessible presentations and interactive notebooks to guide non-technical stakeholders through the transition to the modernized framework, improving data literacy and driving ML adoption.</li>
+            </ul>
+        </div>
+
+        <div class="entry-block">
+            <span class="date-location">Jan 2023 - May 2023 | Chennai, India</span>
+            <h3>Research Assistant</h3>
+            <h4>Data Science Lab, SRM Institute of Science and Technology</h4>
+            <ul>
+                <li>Led end-to-end development of a cardiovascular disease prediction model using Python and scikit-learn, achieving 97% precision on a 1,025-patient dataset.</li>
+                <li>Optimized KNN and Random Forest algorithms through hyperparameter tuning, reducing false negatives by 15% and achieving 0.99 AUC-ROC.</li>
+            </ul>
+        </div>
+
+        <div class="entry-block">
+            <span class="date-location">Jan 2022 - Jun 2022 | Hyderabad, India</span>
+            <h3>Data Analyst Intern</h3>
+            <h4>Volksoft Technologies Pvt Ltd</h4>
+            <ul>
+                <li>Performed data acquisition and pre-processing, implementing data quality checks to verify accuracy and resolve inconsistencies in large datasets.</li>
+                <li>Applied predictive models to identify customer behavior patterns, resulting in a 25% improvement in trend forecasting.</li>
+                <li>Collaborated with cross-functional teams to provide data-driven recommendations, improving operational efficiency by 20%.</li>
+                <li>Developed automated interactive dashboards in Tableau, streamlining stakeholder communication.</li>
             </ul>
         </div>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
-        <div>
-            <h3>Project Title</h3>
-            <p>Brief description of the project.</p>
-            <a href="#">Link to Project</a>
+        
+        <div class="entry-block">
+            <h3>Employee Attrition Predictive Modeling</h3>
+            <p><strong>Tech Stack:</strong> Python, EDA, Scikit-learn, Tree-based Modeling</p>
+            <ul>
+                <li>Developed Decision Tree & Random Forest models to predict employee turnover, obtaining 96% accuracy on an HR dataset of 15K records.</li>
+                <li>Engineered a binary "overworked" feature, revealing that employees working 175+ hours/month had higher attrition risks.</li>
+            </ul>
+        </div>
+
+        <div class="entry-block">
+            <h3>Crime Pattern Analysis and Prediction</h3>
+            <p><strong>Tech Stack:</strong> Python, Scikit-learn, Tableau</p>
+            <ul>
+                <li>Built a Predictive Crime Analysis model using Gaussian Naive Bayes on 7 million records, achieving a 30% accuracy boost through Class Imbalance resolution.</li>
+                <li>Designed a Tableau dashboard visualizing crime hotspots, reducing geospatial outliers by 68% for optimized resource allocation.</li>
+            </ul>
+        </div>
+
+        <div class="entry-block">
+            <h3>Customer Segmentation & Sales Trend Analysis</h3>
+            <p><strong>Tech Stack:</strong> SQL, PowerBI, Snowflake Schema</p>
+            <ul>
+                <li>Architected Snowflake Schema data model integrating 15+ tables and developed 25+ DAX measures for real-time KPI tracking.</li>
+                <li>Implemented demographic clustering revealing high-income buyers generated 2.3x higher AOV, enabling personalized marketing campaigns.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Programming & Libraries</h3>
+                <p>SQL, R, Python (NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn), Databricks, Visual Studio IDE.</p>
+            </div>
+            <div class="skill-category">
+                <h3>Databases</h3>
+                <p>PostgreSQL, MySQL, DynamoDB, NoSQL, Star/Snowflake Schema, ETL (SSIS), Data Reporting.</p>
+            </div>
+            <div class="skill-category">
+                <h3>Business Intelligence</h3>
+                <p>Power BI (DAX, Power Query, M Code), Tableau, PowerPoint, AWS, Excel (Pivot Tables, VBA).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        
+        <div class="entry-block">
+            <span class="date-location">Aug 2023 - May 2025</span>
+            <h3>Master of Science in Information Management</h3>
+            <h4>University of Illinois - Urbana Champaign</h4>
+            <p><strong>GPA:</strong> 4.0/4.0</p>
+            <p><strong>Relevant Coursework:</strong> ML Cloud, Data Warehousing & Business Intelligence, Data Science, Project Coordination.</p>
+        </div>
+
+        <div class="entry-block">
+            <span class="date-location">Aug 2019 - May 2023</span>
+            <h3>B.Tech in Computer Science & Engineering (Big Data Analytics)</h3>
+            <h4>SRM Institute of Science and Technology, India</h4>
+            <p><strong>GPA:</strong> 9.2/10.0</p>
+            <p><strong>Relevant Coursework:</strong> AI, ML, DSA, Database Management System, Statistics, Data Visualization.</p>
         </div>
     </section>
 
     <section id="publications">
         <h2>Publications</h2>
-        <ul><li><strong>Paper Title</strong> - Published in [Journal], Year.</li></ul>
-    </section>
-
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <ul><li>Certification Name - Organization (Year)</li></ul>
-    </section>
-
-    <section id="skills">
-        <h2>Skills</h2>
-        <p><strong>Languages:</strong> Python, SQL</p>
-    </section>
-
-    <section id="education">
-        <h2>Education</h2>
-        <div>
-            <h3>Degree Name</h3>
-            <p><strong>University Name</strong> | Year</p>
-        </div>
+        <ul>
+            <li><strong>ML-driven CVD Prediction:</strong> Published peer-reviewed research paper detailing cross-validation workflows and model interpretability. Cited in 3 conferences for advancing clinical decision-making.</li>
+        </ul>
     </section>
 
     <section id="contact">
         <h2>Contact Me</h2>
         <p style="text-align: center;">
-            <a href="mailto:your@email.com" style="color:#007bff; font-weight: bold; font-size: 1.2em;">your@email.com</a>
+            <a href="mailto:maithililingala@gmail.com" style="color:#007bff; font-weight: bold; font-size: 1.2em;">maithililingala@gmail.com</a><br>
+            <span style="color:#555;">+1 (217) 904-3344</span>
         </p>
     </section>
 
     <footer>
-        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+        <p>&copy; 2025 Maithili Saran Reddy Lingala. All rights reserved.</p>
     </footer>
 
 </body>

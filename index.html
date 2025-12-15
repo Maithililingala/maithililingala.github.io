@@ -129,13 +129,13 @@
             display: inline-block;
             padding-bottom: 5px;
         }
-        h3 { color: var(--accent-color); margin-bottom: 5px; font-size: 1.4rem; }
-        h4 { color: var(--text-secondary); font-weight: 600; font-size: 1.1rem; margin-bottom: 10px; }
+        h3 { color: var(--accent-color); margin-bottom: 5px; font-size: 1.3rem; }
+        h4 { color: var(--text-secondary); font-weight: 600; font-size: 1rem; margin-bottom: 15px; }
         p { margin-bottom: 15px; line-height: 1.8; color: var(--text-secondary); font-size: 1.05rem;}
         ul { padding-left: 20px; color: var(--text-secondary); margin-bottom: 15px; }
         li { margin-bottom: 10px; line-height: 1.6; }
 
-        /* --- Components --- */
+        /* --- Standard Cards (Experience/Education) --- */
         .entry-block {
             background-color: var(--card-bg);
             padding: 25px;
@@ -153,11 +153,43 @@
             padding: 4px 10px; border-radius: 4px;
         }
 
+        /* --- CERTIFICATE GRID STYLING (NEW) --- */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Forces 2 columns */
+            gap: 25px;
+        }
+        
+        .cert-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden; /* Keeps image inside rounded corners */
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .cert-card:hover { transform: translateY(-5px); }
+
+        .cert-thumb {
+            width: 100%;
+            height: 200px; /* Fixed height for uniformity */
+            object-fit: cover; /* Ensures image covers area without stretching */
+            border-bottom: 1px solid var(--border-color);
+            background-color: #f0f0f0; /* Fallback color while loading */
+        }
+        
+        .cert-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .cert-content h3 { font-size: 1.1rem; margin-bottom: 5px; }
+        .cert-content h4 { margin-bottom: 15px; font-size: 0.9rem; }
+        .cert-actions { margin-top: auto; } /* Pushes buttons to bottom */
+
         /* Button Styling */
         .btn {
-            display: inline-block; padding: 10px 20px; margin-right: 10px; margin-bottom: 10px;
+            display: inline-block; padding: 8px 16px; margin-right: 8px; margin-bottom: 5px;
             text-decoration: none; border-radius: 6px; font-weight: bold;
-            transition: 0.3s; border: none; cursor: pointer; font-size: 0.9rem;
+            transition: 0.3s; border: none; cursor: pointer; font-size: 0.85rem;
         }
         .btn-primary { background-color: var(--accent-color); color: white; border: 1px solid var(--accent-color); }
         .btn-primary:hover { opacity: 0.9; box-shadow: 0 4px 8px rgba(0,123,255,0.3); }
@@ -186,6 +218,9 @@
             .date-location { float: none; display: block; margin-bottom: 10px; }
             .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
             .nav-links a { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border-color); margin-bottom: 0; }
+            
+            /* On mobile, switch certificates to 1 column */
+            .cert-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -346,61 +381,83 @@
         <section id="certifications">
             <h2>Certifications</h2>
             
-            <div class="entry-block">
-                <h3>Google Advanced Data Analytics</h3>
-                <h4>Coursera</h4>
-                <br>
-                <a href="https://coursera.org/share/6aec4f1f8637b4b7b053bf302f403221" target="_blank" class="btn btn-outline">
-                    <i class="fas fa-link"></i> Verify Credential
-                </a>
-                <a href="certification/google.pdf" target="_blank" class="btn btn-primary">
-                    <i class="fas fa-file-pdf"></i> View PDF
-                </a>
-            </div>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <img src="certification/google.jpg" alt="Google Data Analytics" class="cert-thumb">
+                    <div class="cert-content">
+                        <h3>Google Advanced Data Analytics</h3>
+                        <h4>Coursera</h4>
+                        <div class="cert-actions">
+                            <a href="https://coursera.org/share/6aec4f1f8637b4b7b053bf302f403221" target="_blank" class="btn btn-outline">
+                                <i class="fas fa-link"></i> Credential
+                            </a>
+                            <a href="certification/google.pdf" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="entry-block">
-                <h3>Foundations of Data Science</h3>
-                <h4>PadhAI / IIT Madras</h4>
-                <br>
-                <a href="https://padhai.onefourthlabs.in/certificates/r6vrih4hyg" target="_blank" class="btn btn-outline">
-                    <i class="fas fa-link"></i> Verify Credential
-                </a>
-                <a href="certification/padhai.pdf" target="_blank" class="btn btn-primary">
-                    <i class="fas fa-file-pdf"></i> View PDF
-                </a>
-            </div>
+                <div class="cert-card">
+                    <img src="certification/padhai.jpg" alt="PadhAI" class="cert-thumb">
+                    <div class="cert-content">
+                        <h3>Foundations of Data Science</h3>
+                        <h4>PadhAI / IIT Madras</h4>
+                        <div class="cert-actions">
+                            <a href="https://padhai.onefourthlabs.in/certificates/r6vrih4hyg" target="_blank" class="btn btn-outline">
+                                <i class="fas fa-link"></i> Credential
+                            </a>
+                            <a href="certification/padhai.pdf" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="entry-block">
-                <h3>Data Analysis with Databricks</h3>
-                <h4>Databricks</h4>
-                <br>
-                <a href="certification/databricks.pdf" target="_blank" class="btn btn-primary">
-                    <i class="fas fa-file-pdf"></i> View PDF
-                </a>
-            </div>
+                <div class="cert-card">
+                    <img src="certification/databricks.jpg" alt="Databricks" class="cert-thumb">
+                    <div class="cert-content">
+                        <h3>Data Analysis with Databricks</h3>
+                        <h4>Databricks</h4>
+                        <div class="cert-actions">
+                            <a href="certification/databricks.pdf" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="entry-block">
-                <h3>Python</h3>
-                <h4>HackerRank</h4>
-                <br>
-                <a href="https://www.hackerrank.com/certificates/iframe/cfc191721e00" target="_blank" class="btn btn-outline">
-                    <i class="fas fa-link"></i> Verify Credential
-                </a>
-                <a href="certification/python.pdf" target="_blank" class="btn btn-primary">
-                    <i class="fas fa-file-pdf"></i> View PDF
-                </a>
-            </div>
+                <div class="cert-card">
+                    <img src="certification/python.jpg" alt="Python" class="cert-thumb">
+                    <div class="cert-content">
+                        <h3>Python</h3>
+                        <h4>HackerRank</h4>
+                        <div class="cert-actions">
+                            <a href="https://www.hackerrank.com/certificates/iframe/cfc191721e00" target="_blank" class="btn btn-outline">
+                                <i class="fas fa-link"></i> Credential
+                            </a>
+                            <a href="certification/python.pdf" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="entry-block">
-                <h3>Problem Solving</h3>
-                <h4>HackerRank</h4>
-                <br>
-                <a href="https://www.hackerrank.com/certificates/iframe/34b174d077b6" target="_blank" class="btn btn-outline">
-                    <i class="fas fa-link"></i> Verify Credential
-                </a>
-                <a href="certification/problem_solving.pdf" target="_blank" class="btn btn-primary">
-                    <i class="fas fa-file-pdf"></i> View PDF
-                </a>
+                <div class="cert-card">
+                    <img src="certification/problem_solving.jpg" alt="Problem Solving" class="cert-thumb">
+                    <div class="cert-content">
+                        <h3>Problem Solving</h3>
+                        <h4>HackerRank</h4>
+                        <div class="cert-actions">
+                            <a href="https://www.hackerrank.com/certificates/iframe/34b174d077b6" target="_blank" class="btn btn-outline">
+                                <i class="fas fa-link"></i> Credential
+                            </a>
+                            <a href="certification/problem_solving.pdf" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -410,7 +467,7 @@
                 <h3>ML-driven CVD Prediction</h3>
                 <p>Published peer-reviewed research paper detailing cross-validation workflows and model interpretability. Cited in 3 conferences.</p>
                 <br>
-                <a href="certification/research.pdf" target="_blank" class="btn btn-primary">
+                <a href="certification/research_paper.pdf" target="_blank" class="btn btn-primary">
                     <i class="fas fa-file-pdf"></i> View Research Paper
                 </a>
             </div>
@@ -432,7 +489,7 @@
     </main>
 
     <script>
-        // 1. Theme Toggle Logic
+        // Theme Toggle Logic
         const toggleBtn = document.getElementById('theme-toggle');
         const body = document.body;
         const icon = toggleBtn.querySelector('i');
@@ -459,35 +516,25 @@
             }
         });
 
-        // 2. Scroll Spy (Active Link Highlighting)
+        // Smart Scroll Spy
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
 
         window.addEventListener('scroll', () => {
             let current = '';
             const scrollY = window.scrollY;
-            
-            // "Offset" acts like a buffer so the highlight changes 
-            // slightly before the section hits the exact top of the screen.
             const offset = 100; 
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
                 
-                // SMART LOGIC: 
-                // Only highlight if we are currently looking AT this section.
-                // We check if the scroll position is between the Start and End of the section.
                 if (scrollY >= (sectionTop - offset) && scrollY < (sectionTop + sectionHeight - offset)) {
                     current = section.getAttribute('id');
                 }
             });
 
-            // Extra check: If we are at the very bottom, and the current logic didn't pick anything
-            // (which can happen if the last section is very short), then pick the last section.
             if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 5) {
-               // Only force contact if "current" is empty. 
-               // This prevents it from stealing focus from Publications.
                if (current === '') {
                    current = 'contact';
                }

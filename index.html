@@ -20,7 +20,7 @@
             --input-bg: #2d2d2d;
         }
 
-        /* Light Mode Variables (Triggered via class) */
+        /* Light Mode Variables */
         body.light-mode {
             --bg-body: #f8f9fa;
             --bg-sidebar: #ffffff;
@@ -155,7 +155,7 @@
             padding: 4px 10px; border-radius: 4px;
         }
 
-        /* --- SKILLS GRID (2 Columns) --- */
+        /* --- SKILLS GRID --- */
         .skills-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -223,7 +223,7 @@
             font-size: 0.95rem;
         }
 
-        /* Mandatory Field Asterisk Logic */
+        /* Mandatory Field Asterisk */
         label.required::after {
             content: " *";
             color: #ff4444; 
@@ -297,6 +297,9 @@
             .profile-img { width: 120px; height: 120px; margin-bottom: 15px; }
             .main-content { margin-left: 0; padding: 30px 20px; }
             .date-location { float: none; display: block; margin-bottom: 10px; }
+            /* For education grid on mobile */
+            .edu-meta { float: none !important; text-align: left !important; margin-bottom: 10px; }
+            
             .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
             .nav-links a { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border-color); margin-bottom: 0; }
             .cert-grid, .skills-grid { grid-template-columns: 1fr; }
@@ -426,41 +429,50 @@
         <section id="skills">
             <h2>Technical Skills</h2>
             <div class="skills-grid">
-                
                 <div class="entry-block">
                     <h3>Programming & Statistical Analysis</h3>
                     <p>Python, R, SQL, A/B Testing, Hypothesis Testing, ANOVA, Scikit-learn, NumPy, Pandas.</p>
                 </div>
-
                 <div class="entry-block">
                     <h3>Business Intelligence & Visualization</h3>
                     <p>Power BI (DAX, Power Query), Tableau, GIS / Mapping, Matplotlib, Seaborn, Excel (Advanced).</p>
                 </div>
-
                 <div class="entry-block">
                     <h3>Database Management & Warehousing</h3>
                     <p>PostgreSQL, MySQL, DynamoDB, NoSQL, Star/Snowflake Schema, ETL (SSIS).</p>
                 </div>
-
                 <div class="entry-block">
                     <h3>Cloud & Deployment Tools</h3>
                     <p>AWS, Databricks, Docker, Kubernetes, Git, Flask, FastAPI, Visual Studio IDE.</p>
                 </div>
-
             </div>
         </section>
 
         <section id="education">
             <h2>Education</h2>
+            
             <div class="entry-block">
-                <span class="date-location">Aug 2023 - May 2025</span>
+                <div class="edu-meta" style="float: right; text-align: right; margin-left: 20px;">
+                    <span class="date-location" style="float: none; display: block; margin-bottom: 5px;">Aug 2023 - May 2025</span>
+                    <a href="certification/ms_transcript.pdf" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 5px 10px;">
+                        <i class="fas fa-file-pdf"></i> View Transcript
+                    </a>
+                </div>
+                
                 <h3>Master of Science in Information Management</h3>
                 <h4>University of Illinois Urbana Champaign</h4>
                 <p><strong>GPA:</strong> 4.0/4.0</p>
                 <p><strong>Coursework:</strong> ML Cloud, Data Warehousing & Business Intelligence, Data Science, Project Coordination.</p>
             </div>
+
             <div class="entry-block">
-                <span class="date-location">Aug 2019 - May 2023</span>
+                <div class="edu-meta" style="float: right; text-align: right; margin-left: 20px;">
+                    <span class="date-location" style="float: none; display: block; margin-bottom: 5px;">Aug 2019 - May 2023</span>
+                    <a href="certification/b.tech_transcript.pdf" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 5px 10px;">
+                        <i class="fas fa-file-pdf"></i> View Transcript
+                    </a>
+                </div>
+
                 <h3>Bachelor of Technology in Computer Science & Engineering with Specialization in Big Data Analytics</h3>
                 <h4>SRM Institute of Science and Technology</h4>
                 <p><strong>GPA:</strong> 9.2/10.0</p>

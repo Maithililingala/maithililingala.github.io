@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- CSS VARIABLES (Theming) --- */
+        /* --- CSS VARIABLES --- */
         :root {
             --bg-body: #f8f9fa;
             --bg-sidebar: #ffffff;
@@ -19,7 +19,6 @@
             --shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        /* Dark Mode Variables */
         body.dark-mode {
             --bg-body: #121212;
             --bg-sidebar: #1e1e1e;
@@ -31,7 +30,6 @@
             --shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        /* --- Global Reset --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         
@@ -44,9 +42,9 @@
             min-height: 100vh;
         }
 
-        /* --- SIDEBAR (Left Side) --- */
+        /* --- SIDEBAR --- */
         .sidebar {
-            width: 280px; /* Slightly wider to accommodate photo nicely */
+            width: 280px;
             background-color: var(--bg-sidebar);
             height: 100vh;
             position: fixed;
@@ -57,28 +55,21 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            transition: background-color 0.3s, border-color 0.3s;
             z-index: 1000;
         }
 
-        /* Profile Image Styling */
-        .profile-header { 
-            text-align: center; 
-            margin-bottom: 30px; 
-        }
-        
         .profile-img {
-            width: 180px;      /* Large size */
-            height: 180px;     /* Keeps it square/circular */
-            object-fit: cover; /* Ensures photo doesn't stretch */
-            border-radius: 50%; /* Makes it a circle */
-            border: 4px solid var(--accent-color); /* Nice colored border */
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin: 0 auto;
+            margin: 0 auto 30px auto;
             display: block;
+            image-rendering: -webkit-optimize-contrast; /* Improves clarity */
         }
 
-        /* Navigation Links */
         .nav-links { list-style: none; flex-grow: 1; }
         .nav-links li { margin-bottom: 8px; }
         .nav-links a {
@@ -97,7 +88,6 @@
             color: var(--accent-color);
         }
 
-        /* Active State (Highlighted) */
         .nav-links a.active {
             background-color: var(--bg-body);
             color: var(--accent-color);
@@ -105,7 +95,6 @@
             font-weight: bold;
         }
 
-        /* Theme Toggle Button */
         .theme-toggle-container {
             text-align: center;
             margin-top: 20px;
@@ -119,9 +108,9 @@
         }
         .theme-btn:hover { background-color: var(--bg-body); }
 
-        /* --- MAIN CONTENT (Right Side) --- */
+        /* --- MAIN CONTENT --- */
         .main-content {
-            margin-left: 280px; /* Must match sidebar width */
+            margin-left: 280px;
             flex-grow: 1;
             padding: 50px 60px;
             max-width: 1200px;
@@ -146,7 +135,7 @@
         ul { padding-left: 20px; color: var(--text-secondary); margin-bottom: 15px; }
         li { margin-bottom: 10px; line-height: 1.6; }
 
-        /* --- Cards/Blocks --- */
+        /* --- Components --- */
         .entry-block {
             background-color: var(--card-bg);
             padding: 25px;
@@ -164,7 +153,6 @@
             padding: 4px 10px; border-radius: 4px;
         }
 
-        /* --- Buttons --- */
         .btn {
             display: inline-block; padding: 12px 25px; margin-right: 15px;
             text-decoration: none; border-radius: 6px; font-weight: bold;
@@ -175,19 +163,15 @@
         .btn-outline { border: 2px solid var(--accent-color); color: var(--accent-color); background: transparent; }
         .btn-outline:hover { background-color: var(--accent-color); color: white; }
 
-        /* --- Skills Grid --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         
-        /* --- Social Links --- */
         .social-icons a {
             color: var(--text-secondary); font-size: 1.8rem; margin-right: 20px;
-            transition: color 0.3s;
-            text-decoration: none; /* <--- THIS LINE REMOVES THE UNDERSCORE */
-            border: none; /* Extra safety to ensure no borders appear */
+            transition: color 0.3s; text-decoration: none; border: none;
         }
-        .social-icons a:hover { color: var(--accent-color); transform: scale(1.1);text-decoration: none; /* Ensures it stays gone when hovering */ }
+        .social-icons a:hover { color: var(--accent-color); transform: scale(1.1); text-decoration: none; }
 
-        /* --- Mobile Responsiveness --- */
+        /* --- Mobile --- */
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { 
@@ -200,7 +184,6 @@
             .date-location { float: none; display: block; margin-bottom: 10px; }
             .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
             .nav-links a { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border-color); margin-bottom: 0; }
-            h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -213,12 +196,11 @@
 
         <ul class="nav-links">
             <li><a href="#home" class="nav-link active">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#experience" class="nav-link">Experience</a></li>
             <li><a href="#projects" class="nav-link">Projects</a></li>
             <li><a href="#skills" class="nav-link">Skills</a></li>
             <li><a href="#education" class="nav-link">Education</a></li>
-            <li><a href="#publications" class="nav-link">Publications</a></li>
+            <li><a href="#certifications" class="nav-link">Certifications</a></li> <li><a href="#publications" class="nav-link">Publications</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
 
@@ -238,24 +220,13 @@
             </p>
             
             <div class="social-icons">
-                <a href="https://linkedin.com/in/maithililingala" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                
-                <a href="https://github.com/maithililingala" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                
-                <a href="https://medium.com/@thedatachronicles" target="_blank" title="Medium">
-                    <i class="fab fa-medium"></i>
-                </a>
-                
-                <a href="https://www.hackerrank.com/profile/Maithili019" target="_blank" title="HackerRank">
-                    <i class="fab fa-hackerrank"></i>
-                </a>
+                <a href="https://linkedin.com/in/maithililingala" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/maithililingala" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://medium.com/@thedatachronicles" target="_blank" title="Medium"><i class="fab fa-medium"></i></a>
+                <a href="https://www.hackerrank.com/profile/Maithili019" target="_blank" title="HackerRank"><i class="fab fa-hackerrank"></i></a>
             </div>
             
-            <div style="margin-top: 35px;">
+            <div style="margin-top: 35px; margin-bottom: 50px;">
                 <a href="resume.pdf" target="_blank" class="btn btn-primary">
                     <i class="fas fa-eye"></i> Preview Resume
                 </a>
@@ -263,11 +234,9 @@
                     <i class="fas fa-download"></i> Download Resume
                 </a>
             </div>
-        </section>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="entry-block">
+            <div class="entry-block" style="border-left: 5px solid var(--accent-color);">
+                <h3>About Me</h3>
                 <p>
                     I am a Master of Science in Information Management student at the University of Illinois Urbana-Champaign (UIUC) with a 4.0 GPA. 
                     With a strong background in Computer Science and Big Data Analytics, I specialize in bridging the gap between mathematical theory and automated business solutions. 
@@ -278,27 +247,24 @@
 
         <section id="experience">
             <h2>Experience</h2>
-
             <div class="entry-block">
                 <span class="date-location">Aug 2024 - Present | Champaign, IL</span>
                 <h3>Research Assistant</h3>
                 <h4>Gies College of Business, UIUC</h4>
                 <ul>
-                    <li>Re-engineered a traditional analytical process by developing a new, end-to-end machine learning framework using real-world datasets to validate models.</li>
-                    <li>Authored accessible presentations and interactive notebooks to guide non-technical stakeholders, improving data literacy and ML adoption.</li>
+                    <li>Re-engineered a traditional analytical process by developing a new, end-to-end machine learning framework using real-world datasets.</li>
+                    <li>Authored accessible presentations and interactive notebooks to guide non-technical stakeholders, improving data literacy.</li>
                 </ul>
             </div>
-
             <div class="entry-block">
                 <span class="date-location">Jan 2023 - May 2023 | Chennai, India</span>
                 <h3>Research Assistant</h3>
                 <h4>Data Science Lab, SRM Institute of Science and Technology</h4>
                 <ul>
-                    <li>Led end-to-end development of a cardiovascular disease prediction model using Python and scikit-learn, achieving 97% precision on a 1,025-patient dataset.</li>
-                    <li>Optimized KNN and Random Forest algorithms through hyperparameter tuning, reducing false negatives by 15% and achieving 0.99 AUC-ROC.</li>
+                    <li>Led end-to-end development of a cardiovascular disease prediction model using Python and scikit-learn, achieving 97% precision.</li>
+                    <li>Optimized KNN and Random Forest algorithms through hyperparameter tuning, reducing false negatives by 15%.</li>
                 </ul>
             </div>
-
             <div class="entry-block">
                 <span class="date-location">Jan 2022 - Jun 2022 | Hyderabad, India</span>
                 <h3>Data Analyst Intern</h3>
@@ -306,14 +272,13 @@
                 <ul>
                     <li>Performed data acquisition and pre-processing, implementing quality checks to resolve inconsistencies in large datasets.</li>
                     <li>Applied predictive models to identify customer behavior patterns, resulting in a 25% improvement in trend forecasting.</li>
-                    <li>Developed automated interactive dashboards in Tableau, streamlining stakeholder communication for strategic decision-making.</li>
+                    <li>Developed automated interactive dashboards in Tableau, streamlining stakeholder communication.</li>
                 </ul>
             </div>
         </section>
 
         <section id="projects">
             <h2>Projects</h2>
-            
             <div class="entry-block">
                 <h3>Employee Attrition Predictive Modeling</h3>
                 <p><strong>Tech Stack:</strong> Python, EDA, Scikit-learn, Tree-based Modeling</p>
@@ -322,7 +287,6 @@
                     <li>Engineered a binary "overworked" feature, revealing that employees working 175+ hours/month had higher attrition risks.</li>
                 </ul>
             </div>
-
             <div class="entry-block">
                 <h3>Crime Pattern Analysis and Prediction</h3>
                 <p><strong>Tech Stack:</strong> Python, Scikit-learn, Tableau</p>
@@ -331,7 +295,6 @@
                     <li>Designed a Tableau dashboard visualizing crime hotspots, reducing geospatial outliers by 68% for optimized resource allocation.</li>
                 </ul>
             </div>
-
             <div class="entry-block">
                 <h3>Customer Segmentation & Sales Trend Analysis</h3>
                 <p><strong>Tech Stack:</strong> SQL, PowerBI, Snowflake Schema</p>
@@ -369,13 +332,31 @@
                 <p><strong>GPA:</strong> 4.0/4.0</p>
                 <p><strong>Coursework:</strong> ML Cloud, Data Warehousing & BI, Data Science.</p>
             </div>
-
             <div class="entry-block">
                 <span class="date-location">Aug 2019 - May 2023</span>
                 <h3>B.Tech in Computer Science & Engineering</h3>
                 <h4>SRM Institute of Science and Technology</h4>
                 <p><strong>GPA:</strong> 9.2/10.0</p>
-                <p><strong>Specialization:</strong> Big Data Analytics</p>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <h2>Certifications</h2>
+            
+            <div class="entry-block">
+                <h3>Google Data Analytics Professional Certificate</h3> <h4>Coursera / Google</h4> <br>
+                <a href="https://example.com/certificate.pdf" target="_blank" class="btn btn-outline" style="font-size: 0.9rem; padding: 8px 15px;">
+                    <i class="fas fa-external-link-alt"></i> View Certificate
+                </a>
+            </div>
+
+            <div class="entry-block">
+                <h3>AWS Certified Cloud Practitioner</h3>
+                <h4>Amazon Web Services</h4>
+                <br>
+                <a href="#" target="_blank" class="btn btn-outline" style="font-size: 0.9rem; padding: 8px 15px;">
+                    <i class="fas fa-external-link-alt"></i> View Certificate
+                </a>
             </div>
         </section>
 
@@ -390,9 +371,9 @@
         <section id="contact">
             <h2>Contact Me</h2>
             <div class="entry-block" style="text-align: center;">
-                <p style="font-size: 1.2rem;">I am always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
+                <p>I am always open to discussing new projects, creative ideas or opportunities.</p>
                 <br>
-                <a href="mailto:maithililingala@gmail.com" class="btn btn-primary" style="font-size: 1.1rem;">
+                <a href="mailto:maithililingala@gmail.com" class="btn btn-primary">
                     <i class="fas fa-envelope"></i> maithililingala@gmail.com
                 </a>
                 <br><br>
@@ -403,12 +384,11 @@
     </main>
 
     <script>
-        // 1. Theme Toggle Logic
+        // Theme Toggle
         const toggleBtn = document.getElementById('theme-toggle');
         const body = document.body;
         const icon = toggleBtn.querySelector('i');
 
-        // Check for saved user preference
         if (localStorage.getItem('theme') === 'dark') {
             body.classList.add('dark-mode');
             icon.classList.remove('fa-moon');
@@ -418,7 +398,6 @@
 
         toggleBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            
             if (body.classList.contains('dark-mode')) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
@@ -432,22 +411,18 @@
             }
         });
 
-        // 2. Scroll Spy (Active Link Highlighting)
+        // Scroll Spy
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
 
         window.addEventListener('scroll', () => {
             let current = '';
-            
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                // Offset of 150px to trigger highlight slightly before section hits top
                 if (pageYOffset >= (sectionTop - 150)) {
                     current = section.getAttribute('id');
                 }
             });
-
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) {

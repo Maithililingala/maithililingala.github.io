@@ -182,8 +182,10 @@
         .social-icons a {
             color: var(--text-secondary); font-size: 1.8rem; margin-right: 20px;
             transition: color 0.3s;
+            text-decoration: none; /* <--- THIS LINE REMOVES THE UNDERSCORE */
+            border: none; /* Extra safety to ensure no borders appear */
         }
-        .social-icons a:hover { color: var(--accent-color); transform: scale(1.1); }
+        .social-icons a:hover { color: var(--accent-color); transform: scale(1.1);text-decoration: none; /* Ensures it stays gone when hovering */ }
 
         /* --- Mobile Responsiveness --- */
         @media (max-width: 768px) {

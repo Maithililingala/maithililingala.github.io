@@ -67,7 +67,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             margin: 0 auto 30px auto;
             display: block;
-            image-rendering: -webkit-optimize-contrast; /* Improves clarity */
+            
         }
 
         .nav-links { list-style: none; flex-grow: 1; }
@@ -153,14 +153,16 @@
             padding: 4px 10px; border-radius: 4px;
         }
 
+        /* Button Styling */
         .btn {
-            display: inline-block; padding: 12px 25px; margin-right: 15px;
+            display: inline-block; padding: 10px 20px; margin-right: 10px; margin-bottom: 10px;
             text-decoration: none; border-radius: 6px; font-weight: bold;
-            transition: 0.3s; border: none; cursor: pointer; font-size: 1rem;
+            transition: 0.3s; border: none; cursor: pointer; font-size: 0.9rem;
         }
-        .btn-primary { background-color: var(--accent-color); color: white; }
+        .btn-primary { background-color: var(--accent-color); color: white; border: 1px solid var(--accent-color); }
         .btn-primary:hover { opacity: 0.9; box-shadow: 0 4px 8px rgba(0,123,255,0.3); }
-        .btn-outline { border: 2px solid var(--accent-color); color: var(--accent-color); background: transparent; }
+        
+        .btn-outline { border: 1px solid var(--accent-color); color: var(--accent-color); background: transparent; }
         .btn-outline:hover { background-color: var(--accent-color); color: white; }
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
@@ -200,7 +202,8 @@
             <li><a href="#projects" class="nav-link">Projects</a></li>
             <li><a href="#skills" class="nav-link">Skills</a></li>
             <li><a href="#education" class="nav-link">Education</a></li>
-            <li><a href="#certifications" class="nav-link">Certifications</a></li> <li><a href="#publications" class="nav-link">Publications</a></li>
+            <li><a href="#certifications" class="nav-link">Certifications</a></li>
+            <li><a href="#publications" class="nav-link">Publications</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
 
@@ -344,18 +347,59 @@
             <h2>Certifications</h2>
             
             <div class="entry-block">
-                <h3>Google Data Analytics Professional Certificate</h3> <h4>Coursera / Google</h4> <br>
-                <a href="https://example.com/certificate.pdf" target="_blank" class="btn btn-outline" style="font-size: 0.9rem; padding: 8px 15px;">
-                    <i class="fas fa-external-link-alt"></i> View Certificate
+                <h3>Google Advanced Data Analytics</h3>
+                <h4>Coursera</h4>
+                <br>
+                <a href="https://coursera.org/share/6aec4f1f8637b4b7b053bf302f403221" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-link"></i> Verify Credential
+                </a>
+                <a href="certification/google.pdf" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> View PDF
                 </a>
             </div>
 
             <div class="entry-block">
-                <h3>AWS Certified Cloud Practitioner</h3>
-                <h4>Amazon Web Services</h4>
+                <h3>Foundations of Data Science</h3>
+                <h4>PadhAI / IIT Madras</h4>
                 <br>
-                <a href="#" target="_blank" class="btn btn-outline" style="font-size: 0.9rem; padding: 8px 15px;">
-                    <i class="fas fa-external-link-alt"></i> View Certificate
+                <a href="https://padhai.onefourthlabs.in/certificates/r6vrih4hyg" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-link"></i> Verify Credential
+                </a>
+                <a href="certification/padhai.pdf" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> View PDF
+                </a>
+            </div>
+
+            <div class="entry-block">
+                <h3>Data Analysis with Databricks</h3>
+                <h4>Databricks</h4>
+                <br>
+                <a href="certification/databricks.pdf" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> View PDF
+                </a>
+            </div>
+
+            <div class="entry-block">
+                <h3>Python</h3>
+                <h4>HackerRank</h4>
+                <br>
+                <a href="https://www.hackerrank.com/certificates/iframe/cfc191721e00" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-link"></i> Verify Credential
+                </a>
+                <a href="certification/python.pdf" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> View PDF
+                </a>
+            </div>
+
+            <div class="entry-block">
+                <h3>Problem Solving</h3>
+                <h4>HackerRank</h4>
+                <br>
+                <a href="https://www.hackerrank.com/certificates/iframe/34b174d077b6" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-link"></i> Verify Credential
+                </a>
+                <a href="certification/problem_solving.pdf" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> View PDF
                 </a>
             </div>
         </section>

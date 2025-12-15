@@ -432,7 +432,7 @@
     </main>
 
     <script>
-        // Theme Toggle
+        // 1. Theme Toggle Logic
         const toggleBtn = document.getElementById('theme-toggle');
         const body = document.body;
         const icon = toggleBtn.querySelector('i');
@@ -459,18 +459,26 @@
             }
         });
 
-        // Scroll Spy
+        // 2. Scroll Spy (Active Link Highlighting)
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
 
         window.addEventListener('scroll', () => {
             let current = '';
+            
+            // Standard check: Which section is near the top?
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 if (pageYOffset >= (sectionTop - 150)) {
                     current = section.getAttribute('id');
                 }
             });
+
+            // FIX: Check if we are at the very bottom of the page
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+                current = 'contact';
+            }
+
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) {

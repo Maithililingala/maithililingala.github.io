@@ -4,275 +4,422 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maithili Saran Reddy Lingala - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* --- General Styling --- */
+        /* --- CSS VARIABLES (Theming) --- */
+        :root {
+            --bg-body: #f8f9fa;
+            --bg-sidebar: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --accent-color: #007bff;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --bg-body: #121212;
+            --bg-sidebar: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --accent-color: #4dabf7;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* --- Global Reset --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding: 0;
-            color: #333; line-height: 1.6;
-            background-color: #fafafa;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            min-height: 100vh;
         }
-        
-        /* --- Navigation Bar --- */
-        nav {
-            position: sticky; top: 0;
-            background-color: #fff; padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000; text-align: center;
-        }
-        nav a {
-            margin: 0 10px; text-decoration: none; color: #555;
-            font-weight: bold; font-size: 0.9rem; text-transform: uppercase;
-            transition: color 0.3s;
-        }
-        nav a:hover { color: #007bff; }
 
-        /* --- Section Styling --- */
-        section {
-            padding: 60px 20px; max-width: 900px; margin: 0 auto;
-            border-bottom: 1px solid #eee;
-            background-color: #fff;
+        /* --- SIDEBAR (Left Side) --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--bg-sidebar);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            transition: background-color 0.3s, border-color 0.3s;
+            z-index: 1000;
         }
-        section:last-of-type { border-bottom: none; }
+
+        .profile-header { text-align: center; margin-bottom: 30px; }
+        .profile-header h2 { font-size: 1.2rem; margin-bottom: 5px; color: var(--text-main); }
+        .profile-header p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* Navigation Links */
+        .nav-links { list-style: none; flex-grow: 1; }
+        .nav-links li { margin-bottom: 5px; }
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
         
-        h2 { text-align: center; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; color: #222; }
-        h3 { margin-bottom: 5px; color: #007bff; margin-top: 0;}
-        h4 { margin: 5px 0; color: #555; font-weight: 600; }
-        
-        p, li { font-size: 1rem; color: #444; }
-        ul { margin-top: 10px; padding-left: 20px; }
+        .nav-links a:hover {
+            background-color: var(--bg-body);
+            color: var(--accent-color);
+        }
+
+        /* Active State (Highlighted) */
+        .nav-links a.active {
+            background-color: var(--bg-body); /* Slightly different bg */
+            color: var(--accent-color);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-container {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        .theme-btn {
+            background: none; border: 1px solid var(--border-color);
+            color: var(--text-main); padding: 8px 15px;
+            border-radius: 20px; cursor: pointer; transition: 0.3s;
+        }
+        .theme-btn:hover { background-color: var(--bg-body); }
+
+        /* --- MAIN CONTENT (Right Side) --- */
+        .main-content {
+            margin-left: 260px; /* Same as sidebar width */
+            flex-grow: 1;
+            padding: 40px 60px;
+            max-width: 1200px; /* Prevents it from getting too stretched on huge screens */
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 20px; /* Spacing for scroll snap */
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--text-main); }
+        h2 { 
+            font-size: 1.8rem; margin-bottom: 25px; 
+            color: var(--text-main); 
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        h3 { color: var(--accent-color); margin-bottom: 5px; font-size: 1.3rem; }
+        h4 { color: var(--text-secondary); font-weight: 600; font-size: 1rem; margin-bottom: 10px; }
+        p { margin-bottom: 15px; line-height: 1.7; color: var(--text-secondary); }
+        ul { padding-left: 20px; color: var(--text-secondary); margin-bottom: 15px; }
         li { margin-bottom: 8px; }
 
-        /* --- Home/Intro Section --- */
-        #home { text-align: center; padding: 80px 20px; background-color: #f4f6f8; }
-        h1 { margin-bottom: 10px; font-size: 2.5rem; color: #222; }
-        .tagline { font-size: 1.2rem; color: #666; margin-bottom: 20px; }
-        
-        .social-links { margin-top: 20px; margin-bottom: 30px;}
-        .social-links a {
-            margin: 0 10px; text-decoration: none; color: #007bff;
-            font-weight: bold; font-size: 1.1em;
+        /* --- Cards/Blocks --- */
+        .entry-block {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
         }
-        .social-links a:hover { text-decoration: underline; }
+        .entry-block:hover { transform: translateY(-2px); }
 
-        /* --- Resume Buttons & Viewer --- */
+        .date-location {
+            float: right; font-size: 0.9em; color: var(--text-secondary); 
+            font-style: italic; background: var(--bg-body);
+            padding: 2px 8px; border-radius: 4px;
+        }
+
+        /* --- Buttons --- */
         .btn {
-            display: inline-block; padding: 10px 25px; margin: 5px;
-            text-decoration: none; border-radius: 5px; font-weight: bold; cursor: pointer;
-            transition: background 0.3s;
+            display: inline-block; padding: 10px 20px; margin-right: 10px;
+            text-decoration: none; border-radius: 5px; font-weight: bold;
+            transition: 0.3s; border: none; cursor: pointer;
         }
-        .btn-preview { background-color: #333; color: white; border: none; }
-        .btn-preview:hover { background-color: #555; }
-        
-        .btn-download { background-color: #007bff; color: white; border: none; }
-        .btn-download:hover { background-color: #0056b3; }
-        
-        #resume-viewer {
-            display: none; /* Hidden by default */
-            margin-top: 30px;
-            width: 100%;
-            height: 600px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        /* --- Entry Blocks (Jobs/Projects) --- */
-        .entry-block { margin-bottom: 30px; }
-        .date-location { float: right; font-size: 0.9em; color: #777; font-style: italic; }
-        .clear-float { clear: both; }
+        .btn-primary { background-color: var(--accent-color); color: white; }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-outline { border: 2px solid var(--accent-color); color: var(--accent-color); }
+        .btn-outline:hover { background-color: var(--accent-color); color: white; }
 
         /* --- Skills Grid --- */
-        .skills-container { display: flex; flex-wrap: wrap; justify-content: space-between; }
-        .skill-category { flex-basis: 30%; min-width: 250px; margin-bottom: 20px; }
-
-        /* --- Footer --- */
-        footer { text-align: center; padding: 30px; background-color: #333; color: #fff; font-size: 0.9rem; margin-top: 0; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         
-        /* Mobile adjustment */
-        @media (max-width: 600px) {
+        /* --- Social Links --- */
+        .social-icons a {
+            color: var(--text-secondary); font-size: 1.5rem; margin-right: 15px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover { color: var(--accent-color); }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { 
+                position: relative; width: 100%; height: auto; 
+                border-right: none; border-bottom: 1px solid var(--border-color);
+            }
+            .main-content { margin-left: 0; padding: 20px; }
             .date-location { float: none; display: block; margin-bottom: 5px; }
+            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .nav-links a { font-size: 0.8rem; padding: 5px 10px; }
         }
     </style>
-    
-    <script>
-        function toggleResume() {
-            var x = document.getElementById("resume-viewer");
-            var btn = document.getElementById("toggle-btn");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-                btn.innerText = "Hide Resume";
-            } else {
-                x.style.display = "none";
-                btn.innerText = "Preview Resume";
-            }
-        }
-    </script>
 </head>
-<body>
+<body class="light-mode">
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#publications">Publications</a>
-        <a href="#contact">Contact</a>
+    <nav class="sidebar">
+        <div class="profile-header">
+            <div style="width: 80px; height: 80px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 15px auto; font-weight: bold;">MS</div>
+            <h2>Maithili Saran</h2>
+            <p>Data Analyst & ML Engineer</p>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+            <li><a href="#publications" class="nav-link">Publications</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="theme-toggle-container">
+            <button id="theme-toggle" class="theme-btn">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+        </div>
     </nav>
 
-    <section id="home">
-        <h1>Maithili Saran Reddy Lingala</h1>
-        <p class="tagline">Data Analyst | Machine Learning Enthusiast | Business Intelligence</p>
+    <main class="main-content">
         
-        <div class="social-links">
-            <a href="https://linkedin.com/in/maithililingala" target="_blank">LinkedIn</a>
-            <a href="https://github.com/maithililingala" target="_blank">GitHub</a>
-            <a href="https://medium.com/@thedatachronicles" target="_blank">Medium</a>
-            <a href="mailto:maithililingala@gmail.com">Email</a>
-        </div>
-        
-        <div>
-            <button id="toggle-btn" onclick="toggleResume()" class="btn btn-preview">Preview Resume</button>
-            <a href="resume.pdf" download class="btn btn-download">Download Resume</a>
-        </div>
-
-        <iframe id="resume-viewer" src="resume.pdf" title="Resume Preview"></iframe>
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            I am a Master of Science in Information Management student at the University of Illinois Urbana-Champaign with a 4.0 GPA. 
-            With a strong foundation in Computer Science and Big Data Analytics, I specialize in bridging the gap between mathematical theory and automated business solutions.
-            My expertise spans Machine Learning, Data Warehousing, and Business Intelligence. I am passionate about using data to drive strategic decision-making and improve operational efficiency.
-        </p>
-    </section>
-
-    <section id="experience">
-        <h2>Experience</h2>
-        
-        <div class="entry-block">
-            <span class="date-location">Aug 2024 - Present | Champaign, Illinois</span>
-            <h3>Research Assistant</h3>
-            <h4>Gies College of Business, University of Illinois - Urbana Champaign</h4>
-            <ul>
-                <li>Re-engineered a traditional analytical process by developing a new, end-to-end machine learning framework, utilizing real-world datasets to validate models that translated mathematical theory into automated business solutions.</li>
-                <li>Authored accessible presentations and interactive notebooks to guide non-technical stakeholders through the transition to the modernized framework, improving data literacy and driving ML adoption.</li>
-            </ul>
-        </div>
-
-        <div class="entry-block">
-            <span class="date-location">Jan 2023 - May 2023 | Chennai, India</span>
-            <h3>Research Assistant</h3>
-            <h4>Data Science Lab, SRM Institute of Science and Technology</h4>
-            <ul>
-                <li>Led end-to-end development of a cardiovascular disease prediction model using Python and scikit-learn, achieving 97% precision on a 1,025-patient dataset.</li>
-                <li>Optimized KNN and Random Forest algorithms through hyperparameter tuning, reducing false negatives by 15% and achieving 0.99 AUC-ROC.</li>
-            </ul>
-        </div>
-
-        <div class="entry-block">
-            <span class="date-location">Jan 2022 - Jun 2022 | Hyderabad, India</span>
-            <h3>Data Analyst Intern</h3>
-            <h4>Volksoft Technologies Pvt Ltd</h4>
-            <ul>
-                <li>Performed data acquisition and pre-processing, implementing data quality checks to verify accuracy and resolve inconsistencies in large datasets.</li>
-                <li>Applied predictive models to identify customer behavior patterns, resulting in a 25% improvement in trend forecasting.</li>
-                <li>Collaborated with cross-functional teams to provide data-driven recommendations, improving operational efficiency by 20%.</li>
-                <li>Developed automated interactive dashboards in Tableau, streamlining stakeholder communication.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Projects</h2>
-        
-        <div class="entry-block">
-            <h3>Employee Attrition Predictive Modeling</h3>
-            <p><strong>Tech Stack:</strong> Python, EDA, Scikit-learn, Tree-based Modeling</p>
-            <ul>
-                <li>Developed Decision Tree & Random Forest models to predict employee turnover, obtaining 96% accuracy on an HR dataset of 15K records.</li>
-                <li>Engineered a binary "overworked" feature, revealing that employees working 175+ hours/month had higher attrition risks.</li>
-            </ul>
-        </div>
-
-        <div class="entry-block">
-            <h3>Crime Pattern Analysis and Prediction</h3>
-            <p><strong>Tech Stack:</strong> Python, Scikit-learn, Tableau</p>
-            <ul>
-                <li>Built a Predictive Crime Analysis model using Gaussian Naive Bayes on 7 million records, achieving a 30% accuracy boost through Class Imbalance resolution.</li>
-                <li>Designed a Tableau dashboard visualizing crime hotspots, reducing geospatial outliers by 68% for optimized resource allocation.</li>
-            </ul>
-        </div>
-
-        <div class="entry-block">
-            <h3>Customer Segmentation & Sales Trend Analysis</h3>
-            <p><strong>Tech Stack:</strong> SQL, PowerBI, Snowflake Schema</p>
-            <ul>
-                <li>Architected Snowflake Schema data model integrating 15+ tables and developed 25+ DAX measures for real-time KPI tracking.</li>
-                <li>Implemented demographic clustering revealing high-income buyers generated 2.3x higher AOV, enabling personalized marketing campaigns.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3>Programming & Libraries</h3>
-                <p>SQL, R, Python (NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn), Databricks, Visual Studio IDE.</p>
+        <section id="home">
+            [cite_start]<h1>Maithili Saran Reddy Lingala [cite: 1]</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">Data Analyst | Machine Learning | Business Intelligence</p>
+            
+            <div class="social-icons">
+                [cite_start]<a href="https://linkedin.com/in/maithililingala" target="_blank"><i class="fab fa-linkedin"></i></a> [cite: 2]
+                <a href="https://github.com/maithililingala" target="_blank"><i class="fab fa-github"></i></a>
+                [cite_start]<a href="https://medium.com/@thedatachronicles" target="_blank"><i class="fab fa-medium"></i></a> [cite: 2]
+                [cite_start]<a href="mailto:maithililingala@gmail.com"><i class="fas fa-envelope"></i></a> [cite: 2]
             </div>
-            <div class="skill-category">
-                <h3>Databases</h3>
-                <p>PostgreSQL, MySQL, DynamoDB, NoSQL, Star/Snowflake Schema, ETL (SSIS), Data Reporting.</p>
+            
+            <div style="margin-top: 30px;">
+                <a href="resume.pdf" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> Preview Resume
+                </a>
+                <a href="resume.pdf" download class="btn btn-outline">
+                    <i class="fas fa-download"></i> Download
+                </a>
             </div>
-            <div class="skill-category">
-                <h3>Business Intelligence</h3>
-                <p>Power BI (DAX, Power Query, M Code), Tableau, PowerPoint, AWS, Excel (Pivot Tables, VBA).</p>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                [cite_start]I am a Master of Science in Information Management student at the University of Illinois Urbana-Champaign (UIUC) with a 4.0 GPA[cite: 4, 5]. 
+                With a strong background in Computer Science and Big Data Analytics, I specialize in bridging the gap between mathematical theory and automated business solutions. 
+                [cite_start]My expertise spans Machine Learning, Data Warehousing, and Business Intelligence[cite: 6, 8]. I am passionate about using data to drive strategic decision-making and improve operational efficiency.
+            </p>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+
+            <div class="entry-block">
+                <span class="date-location">Aug 2024 - Present | [cite_start]Champaign, IL</span> [cite: 15]
+                <h3>Research Assistant</h3>
+                [cite_start]<h4>Gies College of Business, UIUC</h4> [cite: 14]
+                <ul>
+                    [cite_start]<li>Re-engineered a traditional analytical process by developing a new, end-to-end machine learning framework using real-world datasets to validate models. [cite: 16]</li>
+                    [cite_start]<li>Authored accessible presentations and interactive notebooks to guide non-technical stakeholders, improving data literacy and ML adoption. [cite: 17]</li>
+                </ul>
             </div>
-        </div>
-    </section>
 
-    <section id="education">
-        <h2>Education</h2>
-        
-        <div class="entry-block">
-            <span class="date-location">Aug 2023 - May 2025</span>
-            <h3>Master of Science in Information Management</h3>
-            <h4>University of Illinois - Urbana Champaign</h4>
-            <p><strong>GPA:</strong> 4.0/4.0</p>
-            <p><strong>Relevant Coursework:</strong> ML Cloud, Data Warehousing & Business Intelligence, Data Science, Project Coordination.</p>
-        </div>
+            <div class="entry-block">
+                <span class="date-location">Jan 2023 - May 2023 | [cite_start]Chennai, India</span> [cite: 19]
+                <h3>Research Assistant</h3>
+                [cite_start]<h4>Data Science Lab, SRM Institute of Science and Technology</h4> [cite: 18]
+                <ul>
+                    [cite_start]<li>Led end-to-end development of a cardiovascular disease prediction model using Python and scikit-learn, achieving 97% precision on a 1,025-patient dataset. [cite: 20]</li>
+                    [cite_start]<li>Optimized KNN and Random Forest algorithms through hyperparameter tuning, reducing false negatives by 15% and achieving 0.99 AUC-ROC. [cite: 21]</li>
+                </ul>
+            </div>
 
-        <div class="entry-block">
-            <span class="date-location">Aug 2019 - May 2023</span>
-            <h3>B.Tech in Computer Science & Engineering (Big Data Analytics)</h3>
-            <h4>SRM Institute of Science and Technology, India</h4>
-            <p><strong>GPA:</strong> 9.2/10.0</p>
-            <p><strong>Relevant Coursework:</strong> AI, ML, DSA, Database Management System, Statistics, Data Visualization.</p>
-        </div>
-    </section>
+            <div class="entry-block">
+                <span class="date-location">Jan 2022 - Jun 2022 | [cite_start]Hyderabad, India</span> [cite: 25]
+                <h3>Data Analyst Intern</h3>
+                [cite_start]<h4>Volksoft Technologies Pvt Ltd</h4> [cite: 23]
+                <ul>
+                    [cite_start]<li>Performed data acquisition and pre-processing, implementing quality checks to resolve inconsistencies in large datasets. [cite: 26]</li>
+                    [cite_start]<li>Applied predictive models to identify customer behavior patterns, resulting in a 25% improvement in trend forecasting. [cite: 27]</li>
+                    [cite_start]<li>Developed automated interactive dashboards in Tableau, streamlining stakeholder communication for strategic decision-making. [cite: 29]</li>
+                </ul>
+            </div>
+        </section>
 
-    <section id="publications">
-        <h2>Publications</h2>
-        <ul>
-            <li><strong>ML-driven CVD Prediction:</strong> Published peer-reviewed research paper detailing cross-validation workflows and model interpretability. Cited in 3 conferences for advancing clinical decision-making.</li>
-        </ul>
-    </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            
+            <div class="entry-block">
+                [cite_start]<h3>Employee Attrition Predictive Modeling</h3> [cite: 31]
+                <p><strong>Tech Stack:</strong> Python, EDA, Scikit-learn, Tree-based Modeling</p>
+                <ul>
+                    [cite_start]<li>Developed Decision Tree & Random Forest models to predict employee turnover, obtaining 96% accuracy on 15K records. [cite: 32]</li>
+                    [cite_start]<li>Engineered a binary "overworked" feature, revealing that employees working 175+ hours/month had higher attrition risks. [cite: 33]</li>
+                </ul>
+            </div>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p style="text-align: center;">
-            <a href="mailto:maithililingala@gmail.com" style="color:#007bff; font-weight: bold; font-size: 1.2em;">maithililingala@gmail.com</a><br>
-            <span style="color:#555;">+1 (217) 904-3344</span>
-        </p>
-    </section>
+            <div class="entry-block">
+                [cite_start]<h3>Crime Pattern Analysis and Prediction</h3> [cite: 34]
+                <p><strong>Tech Stack:</strong> Python, Scikit-learn, Tableau</p>
+                <ul>
+                    [cite_start]<li>Built a Predictive Crime Analysis model using Gaussian Naive Bayes on 7 million records, achieving a 30% accuracy boost. [cite: 35]</li>
+                    [cite_start]<li>Designed a Tableau dashboard visualizing crime hotspots, reducing geospatial outliers by 68% for optimized resource allocation. [cite: 36]</li>
+                </ul>
+            </div>
 
-    <footer>
-        <p>&copy; 2025 Maithili Saran Reddy Lingala. All rights reserved.</p>
-    </footer>
+            <div class="entry-block">
+                [cite_start]<h3>Customer Segmentation & Sales Trend Analysis</h3> [cite: 37]
+                <p><strong>Tech Stack:</strong> SQL, PowerBI, Snowflake Schema</p>
+                <ul>
+                    [cite_start]<li>Architected Snowflake Schema data model integrating 15+ tables and developed 25+ DAX measures for real-time KPI tracking. [cite: 38]</li>
+                    [cite_start]<li>Implemented demographic clustering revealing high-income buyers generated 2.3x higher AOV, enabling personalized marketing. [cite: 39]</li>
+                </ul>
+            </div>
+        </section>
 
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="entry-block">
+                    [cite_start]<h3>Programming</h3> [cite: 11]
+                    <p>SQL, R, Python (NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn)</p>
+                </div>
+                <div class="entry-block">
+                    [cite_start]<h3>Databases</h3> [cite: 12]
+                    <p>PostgreSQL, MySQL, DynamoDB, NoSQL, Star/Snowflake Schema, ETL (SSIS)</p>
+                </div>
+                <div class="entry-block">
+                    [cite_start]<h3>Business Intelligence</h3> [cite: 13]
+                    <p>Power BI (DAX, Power Query), Tableau, Excel (Pivot, VBA), AWS</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="entry-block">
+                [cite_start]<span class="date-location">Aug 2023 - May 2025</span> [cite: 5]
+                <h3>M.S. in Information Management</h3>
+                [cite_start]<h4>University of Illinois - Urbana Champaign</h4> [cite: 4]
+                <p><strong>GPA:</strong> 4.0/4.0</p>
+                [cite_start]<p><strong>Coursework:</strong> ML Cloud, Data Warehousing & BI, Data Science.</p> [cite: 6]
+            </div>
+
+            <div class="entry-block">
+                [cite_start]<span class="date-location">Aug 2019 - May 2023</span> [cite: 9]
+                <h3>B.Tech in Computer Science & Engineering</h3>
+                [cite_start]<h4>SRM Institute of Science and Technology</h4> [cite: 7]
+                <p><strong>GPA:</strong> 9.2/10.0</p>
+                [cite_start]<p><strong>Specialization:</strong> Big Data Analytics</p> [cite: 8]
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>Publications</h2>
+            <div class="entry-block">
+                <h3>ML-driven CVD Prediction</h3>
+                <p>Published peer-reviewed research paper detailing cross-validation workflows and model interpretability. [cite_start]Cited in 3 conferences. [cite: 22]</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <div class="entry-block" style="text-align: center;">
+                <p>Feel free to reach out via email or LinkedIn.</p>
+                [cite_start]<a href="mailto:maithililingala@gmail.com" class="btn btn-primary">maithililingala@gmail.com</a> [cite: 2]
+                <br><br>
+                [cite_start]<p>+1 (217) 904-3344</p> [cite: 2]
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // 1. Theme Toggle Logic
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = toggleBtn.querySelector('i');
+
+        // Check for saved user preference
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                toggleBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // 2. Scroll Spy (Active Link Highlighting)
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Offset of 150px to trigger highlight slightly before section hits top
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

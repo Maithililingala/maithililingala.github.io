@@ -131,8 +131,8 @@
             display: inline-block;
             padding-bottom: 5px;
         }
-        h3 { color: var(--accent-color); margin-bottom: 5px; font-size: 1.3rem; }
-        h4 { color: var(--text-secondary); font-weight: 600; font-size: 1rem; margin-bottom: 15px; }
+        h3 { color: var(--accent-color); margin-bottom: 5px; font-size: 1.3rem; margin-top: 0; }
+        h4 { color: var(--text-secondary); font-weight: 600; font-size: 1rem; margin-bottom: 15px; margin-top: 0; }
         p { margin-bottom: 15px; line-height: 1.8; color: var(--text-secondary); font-size: 1.05rem;}
         ul { padding-left: 20px; color: var(--text-secondary); margin-bottom: 15px; }
         li { margin-bottom: 10px; line-height: 1.6; }
@@ -153,6 +153,22 @@
             float: right; font-size: 0.9em; color: var(--text-secondary); 
             font-style: italic; background: var(--bg-body);
             padding: 4px 10px; border-radius: 4px;
+        }
+
+        /* Header Layout for Projects/Education (Title Left, Button/Date Right) */
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .entry-header-content {
+            flex: 1;
+            padding-right: 15px;
+        }
+        .entry-header-action {
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         /* --- SKILLS GRID --- */
@@ -297,9 +313,12 @@
             .profile-img { width: 120px; height: 120px; margin-bottom: 15px; }
             .main-content { margin-left: 0; padding: 30px 20px; }
             .date-location { float: none; display: block; margin-bottom: 10px; }
-            /* For education grid on mobile */
             .edu-meta { float: none !important; text-align: left !important; margin-bottom: 10px; }
             
+            /* Break the flexbox on mobile for projects so button goes under title */
+            .entry-header { flex-direction: column; }
+            .entry-header-action { margin-top: 10px; margin-bottom: 10px; }
+
             .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
             .nav-links a { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border-color); margin-bottom: 0; }
             .cert-grid, .skills-grid { grid-template-columns: 1fr; }
@@ -402,7 +421,52 @@
             <h2>Projects</h2>
             
             <div class="entry-block">
-                <h3>NYC Taxi Data Predictive Modeling</h3>
+                <div class="entry-header">
+                    <div class="entry-header-content">
+                        <h3>Employee Attrition Predictive Modeling</h3>
+                    </div>
+                    <div class="entry-header-action">
+                        <a href="https://github.com/Maithililingala/Employee-Attrition-Predictive-Modeling" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 5px 10px;">
+                            <i class="fab fa-github"></i> View Repo
+                        </a>
+                    </div>
+                </div>
+                <p><strong>Tech Stack:</strong> Python, EDA, Scikit-learn, Tree-based Modeling</p>
+                <ul>
+                    <li>Developed Decision Tree & Random Forest models to predict employee turnover, obtaining 96% accuracy on 15K records.</li>
+                    <li>Engineered a binary "overworked" feature, revealing that employees working 175+ hours/month had higher attrition risks.</li>
+                </ul>
+            </div>
+
+            <div class="entry-block">
+                <div class="entry-header">
+                    <div class="entry-header-content">
+                        <h3>Customer Segmentation & Sales Trend Analysis</h3>
+                    </div>
+                    <div class="entry-header-action">
+                        <a href="https://github.com/Maithililingala/AdventureWorks-Sales-Analytics" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 5px 10px;">
+                            <i class="fab fa-github"></i> View Repo
+                        </a>
+                    </div>
+                </div>
+                <p><strong>Tech Stack:</strong> SQL, PowerBI, Snowflake Schema</p>
+                <ul>
+                    <li>Architected Snowflake Schema data model integrating 15+ tables and developed 25+ DAX measures for real-time KPI tracking.</li>
+                    <li>Implemented demographic clustering revealing high-income buyers generated 2.3x higher AOV, enabling personalized marketing.</li>
+                </ul>
+            </div>
+
+            <div class="entry-block">
+                <div class="entry-header">
+                    <div class="entry-header-content">
+                        <h3>NYC Taxi Data Predictive Modeling</h3>
+                    </div>
+                    <div class="entry-header-action">
+                        <a href="https://github.com/Maithililingala/NYC-Taxi-Forecasting" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 5px 10px;">
+                            <i class="fab fa-github"></i> View Repo
+                        </a>
+                    </div>
+                </div>
                 <p><strong>Tech Stack:</strong> Python, Scikit-learn, AWS SageMaker</p>
                 <ul>
                     <li>Architected and deployed end-to-end machine learning pipelines in AWS SageMaker, leveraging Python and XGBoost to predict taxi fares and trip durations, culminating in a model that achieved 99.6%.</li>
@@ -412,28 +476,16 @@
             </div>
 
             <div class="entry-block">
-                <h3>US Market Entry Strategy for AI Healthcare Startup</h3>
-                <p><strong>Role:</strong> Market Research Analyst</p>
-                <p><strong>Skills:</strong> MECE Principle, SWOT Analysis, Hypothesis Testing, Gap Analysis, Data Visualization, Market Sizing, Competitor Benchmarking, Healthcare Analytics, B2B Strategy, Digital Health, Go-to-Market (GTM) Strategy.</p>
-                <ul>
-                    <li>Conducted a quantitative market analysis of the $10 billion US Employee Assistance Program (EAP) sector to validate entry strategies for an AI-based healthcare solution.</li>
-                    <li>Identified a $980 billion economic opportunity by analyzing healthcare expenditure data, pinpointing Musculoskeletal (MSK) conditions as a leading cost driver affecting 1 in 2 American adults.</li>
-                    <li>Synthesized employer survey data from 2018–2022 to forecast industry trends, revealing that 94% of employers plan to expand telehealth offerings and 74% view virtual health as integral to future care delivery.</li>
-                    <li>Segmented consumer demographics to drive product positioning, highlighting that 56% of Gen Z view fitness as a "very high priority" and 65% of Millennials are actively focused on health improvement.</li>
-                </ul>
-            </div>
-
-            <div class="entry-block">
-                <h3>Employee Attrition Predictive Modeling</h3>
-                <p><strong>Tech Stack:</strong> Python, EDA, Scikit-learn, Tree-based Modeling</p>
-                <ul>
-                    <li>Developed Decision Tree & Random Forest models to predict employee turnover, obtaining 96% accuracy on 15K records.</li>
-                    <li>Engineered a binary "overworked" feature, revealing that employees working 175+ hours/month had higher attrition risks.</li>
-                </ul>
-            </div>
-
-            <div class="entry-block">
-                <h3>Crime Pattern Analysis and Prediction</h3>
+                <div class="entry-header">
+                    <div class="entry-header-content">
+                        <h3>Crime Pattern Analysis and Prediction</h3>
+                    </div>
+                    <div class="entry-header-action">
+                        <a href="https://github.com/Maithililingala/Chicago-Crime-Pattern-Analysis-and-Prediction" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 5px 10px;">
+                            <i class="fab fa-github"></i> View Repo
+                        </a>
+                    </div>
+                </div>
                 <p><strong>Tech Stack:</strong> Python, Scikit-learn, Tableau</p>
                 <ul>
                     <li>Built a Predictive Crime Analysis model using Gaussian Naive Bayes on 7 million records, achieving a 30% accuracy boost.</li>
@@ -442,13 +494,45 @@
             </div>
 
             <div class="entry-block">
-                <h3>Customer Segmentation & Sales Trend Analysis</h3>
-                <p><strong>Tech Stack:</strong> SQL, PowerBI, Snowflake Schema</p>
+                <div class="entry-header">
+                    <div class="entry-header-content">
+                        <h3>Multi-Label Research Paper Classification System using RoBERTa & NLP</h3>
+                    </div>
+                    <div class="entry-header-action">
+                        <a href="https://github.com/Maithililingala/Multi-Label-Text-Classification" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 5px 10px;">
+                            <i class="fab fa-github"></i> View Repo
+                        </a>
+                    </div>
+                </div>
+                <p><strong>Tech Stack:</strong> Python, Scikit-learn, PyTorch, Hugging Face Transformers, NLTK, spaCy, Pandas, NumPy</p>
                 <ul>
-                    <li>Architected Snowflake Schema data model integrating 15+ tables and developed 25+ DAX measures for real-time KPI tracking.</li>
-                    <li>Implemented demographic clustering revealing high-income buyers generated 2.3x higher AOV, enabling personalized marketing.</li>
+                    <li>Architected an automated multi-label text classification pipeline for 20,000+ research abstracts, utilizing TF-IDF feature extraction and Classifier Chains to capture label correlations, achieving a peak F1-score of 0.79 with Logistic Regression.</li>
+                    <li>Fine-tuned a RoBERTa transformer model to handle complex semantic dependencies, engineering optimization strategies including Dropout (0.5), Gradient Clipping, and Class Weights to mitigate overfitting on a highly imbalanced dataset.</li>
+                    <li>Executed a rigorous comparative analysis between traditional ML (SVM, Naive Bayes) and Deep Learning architectures, evaluating performance via Hamming Loss and MCC Score to determine the optimal deployment strategy for automated academic tagging.</li>
                 </ul>
             </div>
+
+            <div class="entry-block">
+                <div class="entry-header">
+                    <div class="entry-header-content">
+                        <h3>US Market Entry Strategy for AI Healthcare Startup</h3>
+                    </div>
+                    <div class="entry-header-action">
+                        <a href="https://github.com/Maithililingala/Market-Entry-Strategy-Healthcare-AI" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 5px 10px;">
+                            <i class="fab fa-github"></i> View Repo
+                        </a>
+                    </div>
+                </div>
+                <p><strong>Role:</strong> Market Research Analyst</p>
+                <p><strong>Skills:</strong> MECE Principle, SWOT Analysis, Hypothesis Testing, Gap Analysis, Data Visualization, Market Sizing, Competitor Benchmarking.</p>
+                <ul>
+                    <li>Conducted a quantitative market analysis of the $10 billion US Employee Assistance Program (EAP) sector to validate entry strategies for an AI-based healthcare solution.</li>
+                    <li>Identified a $980 billion economic opportunity by analyzing healthcare expenditure data, pinpointing Musculoskeletal (MSK) conditions as a leading cost driver affecting 1 in 2 American adults.</li>
+                    <li>Synthesized employer survey data from 2018–2022 to forecast industry trends, revealing that 94% of employers plan to expand telehealth offerings and 74% view virtual health as integral to future care delivery.</li>
+                    <li>Segmented consumer demographics to drive product positioning, highlighting that 56% of Gen Z view fitness as a "very high priority" and 65% of Millennials are actively focused on health improvement.</li>
+                </ul>
+            </div>
+
         </section>
 
         <section id="skills">

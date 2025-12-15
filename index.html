@@ -466,16 +466,24 @@
         window.addEventListener('scroll', () => {
             let current = '';
             
-            // Standard check: Which section is near the top?
+            // Offset roughly matches your top header/padding
+            const offset = 60; 
+
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 150)) {
+                const sectionHeight = section.clientHeight;
+                
+                // Logic: Is the scroll position INSIDE this section?
+                // We check if we have scrolled past the top (minus offset)
+                // AND we have NOT scrolled past the bottom
+                if (pageYOffset >= (sectionTop - offset) && pageYOffset < (sectionTop + sectionHeight - offset)) {
                     current = section.getAttribute('id');
                 }
             });
 
-            // FIX: Check if we are at the very bottom of the page
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+            // Special Case: If we are at the very bottom of the page, force 'Contact'
+            // This fixes the issue where the last section is too short to trigger normally
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
                 current = 'contact';
             }
 

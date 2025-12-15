@@ -465,26 +465,32 @@
 
         window.addEventListener('scroll', () => {
             let current = '';
+            const scrollY = window.scrollY;
             
-            // Offset roughly matches your top header/padding
-            const offset = 60; 
+            // "Offset" acts like a buffer so the highlight changes 
+            // slightly before the section hits the exact top of the screen.
+            const offset = 100; 
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
                 
-                // Logic: Is the scroll position INSIDE this section?
-                // We check if we have scrolled past the top (minus offset)
-                // AND we have NOT scrolled past the bottom
-                if (pageYOffset >= (sectionTop - offset) && pageYOffset < (sectionTop + sectionHeight - offset)) {
+                // SMART LOGIC: 
+                // Only highlight if we are currently looking AT this section.
+                // We check if the scroll position is between the Start and End of the section.
+                if (scrollY >= (sectionTop - offset) && scrollY < (sectionTop + sectionHeight - offset)) {
                     current = section.getAttribute('id');
                 }
             });
 
-            // Special Case: If we are at the very bottom of the page, force 'Contact'
-            // This fixes the issue where the last section is too short to trigger normally
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
-                current = 'contact';
+            // Extra check: If we are at the very bottom, and the current logic didn't pick anything
+            // (which can happen if the last section is very short), then pick the last section.
+            if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 5) {
+               // Only force contact if "current" is empty. 
+               // This prevents it from stealing focus from Publications.
+               if (current === '') {
+                   current = 'contact';
+               }
             }
 
             navLinks.forEach(link => {
